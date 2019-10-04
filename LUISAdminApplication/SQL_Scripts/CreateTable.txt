@@ -1,0 +1,123 @@
+﻿
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Intents](
+	[IntentIDX] [int] IDENTITY(1,1) NOT NULL,
+	[BizTypeCode] [int] NULL,
+	[LuisAppID] [nvarchar](200) NULL,
+	[IntentID] [nvarchar](200) NULL,
+	[IntentName] [nvarchar](200) NULL,
+	[Reply1] [nvarchar](1000) NULL,
+	[Reply2] [nvarchar](1000) NULL,
+	[ReplyLink] [nvarchar](500) NULL,
+	[SystemName] [nvarchar](100) NULL,
+	[Etc] [nvarchar](500) NULL,
+	[IsUseYN] [bit] NOT NULL,
+	[ExpectQuestionCnt] [int] NULL,
+	[RegistDate] [datetime] NULL,
+	[RegistUserID] [nvarchar](100) NULL,
+	[ModifyDate] [datetime] NULL,
+	[ModifyUserID] [nvarchar](100) NULL,
+ CONSTRAINT [PK_Intents] PRIMARY KEY CLUSTERED 
+(
+	[IntentIDX] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Utterances](
+	[UtteranceIDX] [int] IDENTITY(1,1) NOT NULL,
+	[IntentIDX] [int] NULL,
+	[ExampleID] [int] NULL,
+	[Utterance] [nvarchar](1000) NULL,
+	[IsUseYN] [bit] NOT NULL,
+	[RegistDate] [datetime] NULL,
+	[RegistUserID] [nvarchar](100) NULL,
+	[ModifyDate] [datetime] NULL,
+	[ModifyUserID] [nvarchar](100) NULL,
+ CONSTRAINT [PK_Utterances] PRIMARY KEY CLUSTERED 
+(
+	[UtteranceIDX] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+
+GO
+
+/****** Object:  Table [dbo].[UserMessages]    Script Date: 2019-10-04 오후 7:01:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[UserMessages](
+	[MessageIDX] [int] IDENTITY(1,1) NOT NULL,
+	[MessageTypeCode] [int] NULL,
+	[BizTypeCode] [int] NULL,
+	[DialogName] [nvarchar](200) NULL,
+	[Message] [nvarchar](1000) NULL,
+	[UserID] [nvarchar](300) NULL,
+	[SessionID] [nvarchar](300) NULL,
+	[IPAddress] [varchar](100) NULL,
+	[MessageDate] [datetime] NULL,
+	[TopIntentIDX] [int] NULL,
+	[TopIntentScore] [numeric](3, 2) NULL,
+	[SubIntentIDX] [int] NULL,
+	[SubIntentScore] [numeric](3, 2) NULL,
+	[IsSuccess] [bit] NOT NULL,
+	[BaseScore] [numeric](3, 2) NULL,
+	[ReturnMessageDate] [datetime] NULL,
+ CONSTRAINT [PK_UserMessages] PRIMARY KEY CLUSTERED 
+(
+	[MessageIDX] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create Proc [dbo].[USP_SelectUtteranceSearch]
+
+As
+
+Select 
+U.*,
+I.IntentName
+from Intents I inner join Utterances U 
+on I.IntentIDX = U.IntentIDX
+ORDER BY UtteranceIDX DESC

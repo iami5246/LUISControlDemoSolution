@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LUISControlDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Intents">
+          <Key>
+            <PropertyRef Name="IntentIDX" />
+          </Key>
+          <Property Name="IntentIDX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BizTypeCode" Type="int" />
+          <Property Name="LuisAppID" Type="nvarchar" MaxLength="200" />
+          <Property Name="IntentID" Type="nvarchar" MaxLength="200" />
+          <Property Name="IntentName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Reply1" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Reply2" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ReplyLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="SystemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Etc" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsUseYN" Type="bit" Nullable="false" />
+          <Property Name="ExpectQuestionCnt" Type="int" />
+          <Property Name="RegistDate" Type="datetime" />
+          <Property Name="RegistUserID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyUserID" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserMessages">
+          <Key>
+            <PropertyRef Name="MessageIDX" />
+          </Key>
+          <Property Name="MessageIDX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageTypeCode" Type="int" />
+          <Property Name="BizTypeCode" Type="int" />
+          <Property Name="DialogName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="300" />
+          <Property Name="SessionID" Type="nvarchar" MaxLength="300" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="100" />
+          <Property Name="MessageDate" Type="datetime" />
+          <Property Name="TopIntentIDX" Type="int" />
+          <Property Name="TopIntentScore" Type="numeric" Precision="3" Scale="2" />
+          <Property Name="SubIntentIDX" Type="int" />
+          <Property Name="SubIntentScore" Type="numeric" Precision="3" Scale="2" />
+          <Property Name="IsSuccess" Type="bit" Nullable="false" />
+          <Property Name="BaseScore" Type="numeric" Precision="3" Scale="2" />
+          <Property Name="ReturnMessageDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Utterances">
+          <Key>
+            <PropertyRef Name="UtteranceIDX" />
+          </Key>
+          <Property Name="UtteranceIDX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntentIDX" Type="int" />
+          <Property Name="ExampleID" Type="int" />
+          <Property Name="Utterance" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsUseYN" Type="bit" Nullable="false" />
+          <Property Name="RegistDate" Type="datetime" />
+          <Property Name="RegistUserID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyUserID" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Function Name="USP_SelectUtteranceSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LUISControlDBModelStoreContainer">
+          <EntitySet Name="Intents" EntityType="Self.Intents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMessages" EntityType="Self.UserMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utterances" EntityType="Self.Utterances" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LUISControlDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Intents">
+          <Key>
+            <PropertyRef Name="IntentIDX" />
+          </Key>
+          <Property Name="IntentIDX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BizTypeCode" Type="Int32" />
+          <Property Name="LuisAppID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IntentID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IntentName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Reply1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Reply2" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ReplyLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SystemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Etc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsUseYN" Type="Boolean" Nullable="false" />
+          <Property Name="ExpectQuestionCnt" Type="Int32" />
+          <Property Name="RegistDate" Type="DateTime" Precision="3" />
+          <Property Name="RegistUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserMessages">
+          <Key>
+            <PropertyRef Name="MessageIDX" />
+          </Key>
+          <Property Name="MessageIDX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageTypeCode" Type="Int32" />
+          <Property Name="BizTypeCode" Type="Int32" />
+          <Property Name="DialogName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SessionID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MessageDate" Type="DateTime" Precision="3" />
+          <Property Name="TopIntentIDX" Type="Int32" />
+          <Property Name="TopIntentScore" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="SubIntentIDX" Type="Int32" />
+          <Property Name="SubIntentScore" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="IsSuccess" Type="Boolean" Nullable="false" />
+          <Property Name="BaseScore" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="ReturnMessageDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Utterances">
+          <Key>
+            <PropertyRef Name="UtteranceIDX" />
+          </Key>
+          <Property Name="UtteranceIDX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntentIDX" Type="Int32" />
+          <Property Name="ExampleID" Type="Int32" />
+          <Property Name="Utterance" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsUseYN" Type="Boolean" Nullable="false" />
+          <Property Name="RegistDate" Type="DateTime" Precision="3" />
+          <Property Name="RegistUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="LUISControlDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Intents" EntityType="Self.Intents" />
+          <EntitySet Name="UserMessages" EntityType="Self.UserMessages" />
+          <EntitySet Name="Utterances" EntityType="Self.Utterances" />
+          <FunctionImport Name="USP_SelectUtteranceSearch" ReturnType="Collection(LUISControlDBModel.USP_SelectUtteranceSearch_Result)" />
+        </EntityContainer>
+        <ComplexType Name="USP_SelectUtteranceSearch_Result">
+          <Property Type="Int32" Name="UtteranceIDX" Nullable="false" />
+          <Property Type="Int32" Name="IntentIDX" Nullable="true" />
+          <Property Type="Int32" Name="ExampleID" Nullable="true" />
+          <Property Type="String" Name="Utterance" Nullable="true" MaxLength="1000" />
+          <Property Type="Boolean" Name="IsUseYN" Nullable="false" />
+          <Property Type="DateTime" Name="RegistDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="RegistUserID" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ModifyUserID" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IntentName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LUISControlDBModelStoreContainer" CdmEntityContainer="LUISControlDBEntities">
+          <EntitySetMapping Name="Intents">
+            <EntityTypeMapping TypeName="LUISControlDBModel.Intents">
+              <MappingFragment StoreEntitySet="Intents">
+                <ScalarProperty Name="IntentIDX" ColumnName="IntentIDX" />
+                <ScalarProperty Name="BizTypeCode" ColumnName="BizTypeCode" />
+                <ScalarProperty Name="LuisAppID" ColumnName="LuisAppID" />
+                <ScalarProperty Name="IntentID" ColumnName="IntentID" />
+                <ScalarProperty Name="IntentName" ColumnName="IntentName" />
+                <ScalarProperty Name="Reply1" ColumnName="Reply1" />
+                <ScalarProperty Name="Reply2" ColumnName="Reply2" />
+                <ScalarProperty Name="ReplyLink" ColumnName="ReplyLink" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Etc" ColumnName="Etc" />
+                <ScalarProperty Name="IsUseYN" ColumnName="IsUseYN" />
+                <ScalarProperty Name="ExpectQuestionCnt" ColumnName="ExpectQuestionCnt" />
+                <ScalarProperty Name="RegistDate" ColumnName="RegistDate" />
+                <ScalarProperty Name="RegistUserID" ColumnName="RegistUserID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMessages">
+            <EntityTypeMapping TypeName="LUISControlDBModel.UserMessages">
+              <MappingFragment StoreEntitySet="UserMessages">
+                <ScalarProperty Name="MessageIDX" ColumnName="MessageIDX" />
+                <ScalarProperty Name="MessageTypeCode" ColumnName="MessageTypeCode" />
+                <ScalarProperty Name="BizTypeCode" ColumnName="BizTypeCode" />
+                <ScalarProperty Name="DialogName" ColumnName="DialogName" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="TopIntentIDX" ColumnName="TopIntentIDX" />
+                <ScalarProperty Name="TopIntentScore" ColumnName="TopIntentScore" />
+                <ScalarProperty Name="SubIntentIDX" ColumnName="SubIntentIDX" />
+                <ScalarProperty Name="SubIntentScore" ColumnName="SubIntentScore" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="BaseScore" ColumnName="BaseScore" />
+                <ScalarProperty Name="ReturnMessageDate" ColumnName="ReturnMessageDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utterances">
+            <EntityTypeMapping TypeName="LUISControlDBModel.Utterances">
+              <MappingFragment StoreEntitySet="Utterances">
+                <ScalarProperty Name="UtteranceIDX" ColumnName="UtteranceIDX" />
+                <ScalarProperty Name="IntentIDX" ColumnName="IntentIDX" />
+                <ScalarProperty Name="ExampleID" ColumnName="ExampleID" />
+                <ScalarProperty Name="Utterance" ColumnName="Utterance" />
+                <ScalarProperty Name="IsUseYN" ColumnName="IsUseYN" />
+                <ScalarProperty Name="RegistDate" ColumnName="RegistDate" />
+                <ScalarProperty Name="RegistUserID" ColumnName="RegistUserID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_SelectUtteranceSearch" FunctionName="LUISControlDBModel.Store.USP_SelectUtteranceSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LUISControlDBModel.USP_SelectUtteranceSearch_Result">
+                <ScalarProperty Name="UtteranceIDX" ColumnName="UtteranceIDX" />
+                <ScalarProperty Name="IntentIDX" ColumnName="IntentIDX" />
+                <ScalarProperty Name="ExampleID" ColumnName="ExampleID" />
+                <ScalarProperty Name="Utterance" ColumnName="Utterance" />
+                <ScalarProperty Name="IsUseYN" ColumnName="IsUseYN" />
+                <ScalarProperty Name="RegistDate" ColumnName="RegistDate" />
+                <ScalarProperty Name="RegistUserID" ColumnName="RegistUserID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
+                <ScalarProperty Name="IntentName" ColumnName="IntentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

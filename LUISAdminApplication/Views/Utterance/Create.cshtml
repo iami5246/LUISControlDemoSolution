@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @model LUISAdminApplication.Models.UtteranceManageVM
+}
+
+<h2>발화메시지 등록</h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "Utterance", null, FormMethod.Post, new { id = "uttform" }))
+    {
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label">인텐트선택</label>
+            </div>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(m => m.Utterance.IntentIDX,
+                                new SelectList(Model.Intents, "IntentIDX", "IntentName",Model.Utterance.IntentIDX), new { @class = "form-control m-b" })
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label">발화메시지</label>
+            </div>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.Utterance.Utterance, new { placeholder = "발화메시지", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.SaveMode)
+                @Html.HiddenFor(m => m.Utterance.UtteranceIDX)
+                <button type="submit" class="btn btn-primary">저장</button>
+                <a href="/utterance/list" class="btn btn-info">목록</a>
+            </div>
+        </div>
+
+    }
+
+</div>
+

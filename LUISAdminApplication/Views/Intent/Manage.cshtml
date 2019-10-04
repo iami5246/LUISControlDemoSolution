@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @model LUISAdminApplication.Models.IntentManageVM
+}
+
+<h2>인텐트 정보관리</h2>
+<div class="container">
+    @using (Html.BeginForm("Manage", "Intent", null, FormMethod.Post, new { id = "intentform" }))
+    {
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label">인텐트명</label>
+            </div>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.Intent.IntentName, new { placeholder = "인텐트명", @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label">인텐트 답변</label>
+            </div>
+            <div class="col-sm-9">
+                @Html.TextAreaFor(m => m.Intent.Reply1, new { rows = "3", @class = "form-control", style = "right-margin:100px;" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.SaveMode)
+                @Html.HiddenFor(m => m.Intent.IntentIDX)
+                @Html.HiddenFor(m => m.Intent.IntentID)
+                <button type="submit" class="btn btn-primary">저장</button>
+                <a href="/intent/list" class="btn btn-info">목록</a>
+            </div>
+        </div>
+
+    }
+
+    </div>

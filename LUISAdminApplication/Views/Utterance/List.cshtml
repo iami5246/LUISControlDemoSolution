@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @model List<LUISAdminApplication.Models.USP_SelectUtteranceSearch_Result>
+
+    string result = string.Empty;
+    if (Request.QueryString["result"] != null)
+    {
+        result = Request.QueryString["result"];
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <h2>발화메시지 목록</h2>
+    </div>
+
+    <div class="row">
+        <table>
+            <tr>
+                <th width="30%">고유번호</th>
+                <th width="20%">인텐트명</th>
+                <th width="*">발화메시지</th>
+                <th width="5%">사용여부</th>
+                <th width="10%">수정일시</th>
+            </tr>
+            @foreach (var utt in Model)
+            {
+                <tr>
+                    <td>@utt.ExampleID</td>
+                    <td>@utt.IntentName</td>
+                    <td>@utt.Utterance</td>
+                    <td>@utt.IsUseYN</td>
+                    <td>@Convert.ToDateTime(utt.ModifyDate).ToString("yyyy-MM-dd")</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-1">
+            <a href="/publish/train" class="btn btn-warning">트레인</a>
+        </div>
+        <div class="col-sm-1">
+            <a href="/publish/publish" class="btn btn-danger">게시하기</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3">
+          처리결과 :  @result
+        </div>
+    </div>
+
+</div>
+
